@@ -58,7 +58,7 @@ jobs:
         git clone --depth 1 $FIRMWARE_URL -b $REPO_BRANCH kirkwood
         rm -rf ./openwrt/target/linux/kirkwood/
         cp -rf kirkwood ./openwrt/target/linux/
-        make target/linux/refresh V=s
+
 
     - name: add other sources
       run: echo "src-git lienol https://github.com/Lienol/openwrt-package" >> ./openwrt/feeds.conf.default
@@ -75,6 +75,9 @@ jobs:
         chmod +x $DIY_SH
         cd openwrt
         ../$DIY_SH
+        make target/linux/clean V=s QUILT=1
+        make target/linux/prepare V=s
+        make target/linux/refresh V=s
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
