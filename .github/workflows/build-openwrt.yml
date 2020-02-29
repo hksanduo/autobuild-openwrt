@@ -77,7 +77,6 @@ jobs:
         ../$DIY_SH
         make target/linux/clean V=s QUILT=1
         make target/linux/prepare V=s
-        make target/linux/refresh V=s
 
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
