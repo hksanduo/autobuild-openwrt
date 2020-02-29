@@ -14,8 +14,9 @@ on:
   push:
     branches:
       - master
-    paths:
-      - '.config'
+    paths-ignore:
+      - 'LICENSE'
+      - 'README.md'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
@@ -55,7 +56,7 @@ jobs:
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
            git clone --depth 1 $FIRMWARE_URL -b $REPO_BRANCH kirkwood
            rm -rf ./openwrt/target/linux/kirkwood/
-           cp -rf kirkwood ./openwrt/target/linux/   
+           cp -rf kirkwood ./openwrt/target/linux/
            make target/linux/refresh V=s
 
     - name: add other sources
