@@ -105,7 +105,7 @@ jobs:
       if: env.SSH_ACTIONS == 'true'
 
     - name: Compile the firmware again
-      id: compile again
+      id: compile_again
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
