@@ -104,8 +104,8 @@ jobs:
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
-    - name: Compile the firmware
-      id: compile
+    - name: Compile the firmware again
+      id: compile again
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
