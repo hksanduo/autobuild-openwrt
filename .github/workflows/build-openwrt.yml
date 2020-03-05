@@ -91,10 +91,16 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        make tools/install IGNORE_ERRORS=1 -j99 V=s
-        make toolchain/install IGNORE_ERRORS=1 -j99 V=s
 
-    - name: SSH connection to Actions for custom configuration kernel
+    - name: Compile the firmware
+      id: compile
+      run: |
+        cd openwrt
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j99
+        echo "::set-output name=status::success"
+
+    - name: SSH connection to Actions for custom configuration firmware
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
