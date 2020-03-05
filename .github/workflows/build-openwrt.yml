@@ -93,7 +93,6 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
         make tools/install -j99
         make toolchain/install -j99
-        make target/compile -j99
 
     - name: SSH connection to Actions for custom configuration kernel
       uses: P3TERX/debugger-action@master
