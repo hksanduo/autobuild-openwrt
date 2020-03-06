@@ -89,6 +89,7 @@ jobs:
         cd openwrt
         make defconfig
         make download -j8
+        make prereq -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
@@ -97,7 +98,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc)  IGNORE_ERRORS=1 || make -j99  IGNORE_ERRORS=1
+        make -j$(nproc)  IGNORE_ERRORS=1 || make -j1 V=s IGNORE_ERRORS=1
         echo "::set-output name=status::success"
 
     - name: SSH connection to Actions for custom configuration firmware
